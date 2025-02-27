@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset='UTF-8'/>
+   <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=5'/>
+   <meta http-equiv='X-UA-Compatible' content='IE=edge'/>
+   <link rel='preconnect' href='https://fonts.googleapis.com'>
+   <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+   <link href='https://fonts.googleapis.com/css2?family=Shippori+Antique&display=swap' rel='stylesheet'>
+   <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark/dark.css'>
+   <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js'></script>
+   <script src='https://kit.fontawesome.com/4f3ce16e3e.js' crossorigin='anonymous'></script>
+   <link href='https://kuisberhadiah.likeadream.repl.co/style.css' rel='stylesheet' type='text/css'/>
+   <style>
+      body{background-image: url("https://i.postimg.cc/0Qx39yJW/gifmaker-me-2.gif");background-repeat: no-repeat;background-size: 100% 100% 100%;} body::before{opacity:0}
+   </style>
+</head>
+<body>
+   <audio id='bgMusic' src='Happy Birthday.mp3' type='audio/mpeg'></audio>
+   <script>
+      const swals = Swal.mixin({
+         backdrop: 'rgba(0,0,123,0.4)',
+         confirmButtonColor: '#003EFF',
+         cancelButtonColor: '#FF0040',
+         allowOutsideClick: false,
+      });
+      async function mulai() {
+         const { value: nama } = await swals.fire({
+            title: 'Nama kamu?',
+            input: 'text',
+            confirmButtonText: 'Lanjut',
+            showCancelButton: false,
+            preConfirm: () => {
+               document.getElementById('bgMusic').play();
+            }
+         });
+         if (nama && nama.length < 11) {
+            await swals.fire('Hai cantik, aku panggil bocil aja ya 😌');
+            await swals.fire('Cie sibocil hari ini ultah, yaampun ciayanggg 😌');
+            await swals.fire('Selamat ulang tahun ya sayang');
+            await swals.fire('Panjang umur & sehat selalu ❤️');
+            pilihwarna();
+         } else {
+            await swals.fire('Gaboleh dikosongin ayang 😤');
+            mulai();
+         }
+      }
+      mulai();
+
+      async function pilihwarna() {
+         const { isConfirmed: warna } = await swals.fire({
+            title: 'Berarti sekarang mau dipanggil bocil apa orang tua? 😌',
+            showCancelButton: true,
+            confirmButtonText: 'Orang tua',
+            cancelButtonText: 'Bocil aja'
+         });
+         if(warna){
+           await swals.fire('Bocil aja ah ayang 😌');
+           var { isConfirmed: warna2 } = await swals.fire({
+           title: ' Bocil apa orang tua ayang ihh? 😌', 
+            showCancelButton: true,
+           confirmButtonText: 'Orang Tua',
+           cancelButtonText: 'Bocil',
+         });
+         if(warna2){
+           await swals.fire('Ga ah, Bocil aja 😌', `Udah ah ayang, semoga suka ya kadonya 😚`);
+           expl();StartMarquee();
+         } else {
+           await swals.fire('Oke cibocill, makasih udah buka website ini 😚');
+           expl();StartMarquee();
+         }
+         //Selingan
+         } else {
+           await swals.fire('Yaampun cibocilll 😌');
+           var { isConfirmed: warna2 } = await swals.fire({
+           title: ' Suka kadonya ga ayang? 😌', 
+            showCancelButton: true,
+           confirmButtonText: 'Suka banget 😚',
+           cancelButtonText: 'Ga suka 😞',
+         });
+         if(warna2){    
+           await swals.fire('Alhamdulillah sayang kalo suka 😚', 'Dipake ya sayang biar ga sakit kakinya 😚');
+           expl();StartMarquee();
+         } else {
+           await swals.fire('Yahhh 😞', `kalo gasuka sama warnanya bilang ya ayang nanti aku ganti warna yg satunya okee 😚`);
+           expl();StartMarquee();
+         }
+         }
+         }
+      </script>
+   </body>
+</html>
